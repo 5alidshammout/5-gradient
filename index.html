@@ -5,15 +5,58 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>5-gradient | easily create gradients</title>
+        <style>
+            #csstxt {
+                background: #c8c8c8;
+                border: 1px solid grey;
+                border-radius: 5px;
+                padding: 5px;
+                font-family: "fira code";
+                font-weight: 900;
+                font-size: 20px;
+            }
+            .btn {
+                background: #c8c8c8;
+                border: 1px solid grey;
+                border-radius: 5px;
+                padding: 5px;
+                font-family: "fira code";
+                font-weight: 100;
+                font-size: 30px;
+                outline: none;
+            }
+        </style>
     </head>
     <body>
-        <button onClick="location.reload()">New Gradient</button>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.1/chroma.min.js" integrity="sha512-RWI59o+PDXjPl3bakOf3k2ZbDtfvn/OU/ZKe6QmkE0V/ve7vYKEJe0RdkDueS+VkghBazP+1o4LKGON+pHUa5g==" crossorigin="anonymous"></script>
+        <button onClick="location.reload();" class="btn">New Gradient</button>
+        <button id="cpyCss" class="btn" data-clipboard-target="#csstxt">
+            copy css
+        </button>
+        <p id="csstxt"></p>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.1/chroma.min.js"
+            integrity="sha512-RWI59o+PDXjPl3bakOf3k2ZbDtfvn/OU/ZKe6QmkE0V/ve7vYKEJe0RdkDueS+VkghBazP+1o4LKGON+pHUa5g=="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.js"
+            integrity="sha512-DtTYd1g6TRpxfYHg+o7hVopdDBafEPnLs81XFiu5rVLr3eamPxvnuJUhwF5w4Z2GJbA/vpE7emalj7pKjnMphQ=="
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
         <script>
+            "use strict";
             const c1 = chroma.random();
             const c2 = chroma.random();
+            const txt = document.querySelector("#csstxt");
             const Gradient = `linear-gradient(90deg, ${c1} 0%, ${c2} 100%)`;
             document.body.style.background = Gradient;
+            txt.innerHTML = `background: ${Gradient};`;
+            new ClipboardJS("#cpyCss");
         </script>
     </body>
 </html>
