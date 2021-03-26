@@ -1,1 +1,3 @@
-# gradient-generator
+# 5-gradient
+
+A Simple Gradient Generator

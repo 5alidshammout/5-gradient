@@ -6,14 +6,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>5-gradient | easily create gradients</title>
         <style>
+            body {
+                margin: 0;
+                padding: 0;
+                display: grid;
+                height: 100vh !important;
+                width: 100vw !important;
+                grid-template-rows: repeat(10, 1fr);
+                grid-template-columns: repeat(10, 1fr);
+                color: black !important;
+            }
+            *::selection {
+                background: black;
+                color: #c8c8c8;
+            }
             #csstxt {
                 background: #c8c8c8;
                 border: 1px solid grey;
                 border-radius: 5px;
-                padding: 5px;
+                padding: 10px;
                 font-family: "fira code";
                 font-weight: 900;
-                font-size: 20px;
+                font-size: 40px;
+                grid-column: 2/10;
+                grid-row: 4/5;
+                margin: 0;
             }
             .btn {
                 background: #c8c8c8;
@@ -24,15 +41,49 @@
                 font-weight: 100;
                 font-size: 30px;
                 outline: none;
+                grid-column: 2/5;
+                grid-row: 6/7;
+            }
+            #cpyCss {
+                grid-column: 7/10 !important;
+                grid-row: 6/7 !important;
+            }
+            .credits {
+                color: black;
+                background: #c8c8c8;
+                border: 1px solid grey;
+                border-radius: 5px;
+                grid-column: 6/11 !important;
+                grid-row: 10/11 !important;
+                font-size: 25px;
+                margin: 0;
+                text-align: center;
+            }
+            a {
+                color: black;
             }
         </style>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <button onClick="location.reload();" class="btn">New Gradient</button>
         <button id="cpyCss" class="btn" data-clipboard-target="#csstxt">
-            copy css
+            Copy CSS
         </button>
         <p id="csstxt"></p>
+
+        <p class="credits">
+            Made by
+            <a href="https://github.com/5alidshammout" target="_blank"
+                >5alidshammout</a
+            >
+            using chroma.js and ClipboardJS
+        </p>
+
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.1/chroma.min.js"
             integrity="sha512-RWI59o+PDXjPl3bakOf3k2ZbDtfvn/OU/ZKe6QmkE0V/ve7vYKEJe0RdkDueS+VkghBazP+1o4LKGON+pHUa5g=="
@@ -43,11 +94,6 @@
             integrity="sha512-DtTYd1g6TRpxfYHg+o7hVopdDBafEPnLs81XFiu5rVLr3eamPxvnuJUhwF5w4Z2GJbA/vpE7emalj7pKjnMphQ=="
             crossorigin="anonymous"
         ></script>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
         <script>
             "use strict";
             const c1 = chroma.random();
@@ -57,6 +103,14 @@
             document.body.style.background = Gradient;
             txt.innerHTML = `background: ${Gradient};`;
             new ClipboardJS("#cpyCss");
+
+            const cpyCss = document.querySelector("#cpyCss");
+            cpyCss.onclick = () => {
+                cpyCss.innerHTML = "Copied!!";
+                setTimeout(() => {
+                    cpyCss.innerHTML = "Copy CSS";
+                }, 1000);
+            };
         </script>
     </body>
 </html>
